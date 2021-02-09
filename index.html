@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Boolflix</title>
+
+    <!-- CSS, FontAwesome, Vue, Axios -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+    <!-- /Fine Librerie -->
+
+  </head>
+  <body>
+    <!-- Root Vue -->
+    <div id='root'>
+      <!-- Container -->
+      <div class="container">
+        <!-- Contenuto del sito -->
+        <div class="content">
+
+          <h2>Query film con grafica minimale</h2>
+
+          <!-- Search Bar -->
+          <label for="search-bar"> Titolo da cercare </label>
+          <input name="search-bar" v-model="searchInput">
+          <button @click="searchQuery" > CERCA </button>
+          <!-- /Search Bar -->
+
+          <!-- Oggetto esempio -->
+          <span> Oggetto esempio </span>
+          <div class="film">
+            <ul>
+              <li class="cover"> <img src="https://images-na.ssl-images-amazon.com/images/I/81bMH2HwVyL._AC_SL1500_.jpg" alt="Copertina Kill Bill">
+              <li class="titolo">Titolo - Kill Bill</li>
+              <li class="titolo-originale">Titolo originale - Kill Bill: vol-1</li>
+              <li class="lingua">Lingua - en</li>
+              <li class="voto">Voto - 9/10</li>
+            </ul>
+          </div>
+          <!--/Oggetto esempio -->
+
+
+
+      </div>
+      <!-- /Container -->
+    </div>
+    <!-- /Root -->
+    <script src="./js/main.js" charset="utf-8"></script>
+  </body>
+</html>

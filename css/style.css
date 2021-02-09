@@ -1,0 +1,47 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* UTILITY******************************************************************* */
+.bg-grey{
+  background-color: rgb(245,247,247);
+}
+/* /UTILITY****************************************************************** */
+
+h2{
+  color: red;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+
+.container{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.film{
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.film img{
+  width: 400px;
+  height: 400px;
+}
+
+.film ul{
+  text-decoration: none;
+  list-style: none;
+}
