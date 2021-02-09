@@ -11,8 +11,8 @@ var app = new Vue ({
   data: {
     httpUri: 'https://api.themoviedb.org',
     httpBody: '/3/search/movie',
-    httpRequest: '?api_key=41689b28957d4803002626fc60582afd&query=', //Query di test
-    searchInput: 'kill',
+    httpRequest: '?api_key=41689b28957d4803002626fc60582afd&query=',
+    searchInput: '',
     listaFilm: [],
     query: '',
   },
