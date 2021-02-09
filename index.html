@@ -28,19 +28,21 @@
           <button @click="searchQuery" > CERCA </button>
           <!-- /Search Bar -->
 
-          <!-- Oggetto esempio -->
-          <span> Oggetto esempio </span>
-          <div class="film">
-            <ul>
-              <li class="cover"> <img src="https://images-na.ssl-images-amazon.com/images/I/81bMH2HwVyL._AC_SL1500_.jpg" alt="Copertina Kill Bill">
-              <li class="titolo">Titolo - Kill Bill</li>
-              <li class="titolo-originale">Titolo originale - Kill Bill: vol-1</li>
-              <li class="lingua">Lingua - en</li>
-              <li class="voto">Voto - 9/10</li>
-            </ul>
-          </div>
-          <!--/Oggetto esempio -->
 
+          <!-- Lista Film trovati -->
+          <div class="box-film">
+            <div v-for="film in listaFilm" class="film">
+              <img class="poster" :src="'https://www.themoviedb.org/t/p/w94_and_h141_bestv2/'+film.poster_path" alt="Immagine non disponibile">
+              <ul>
+                <li class="titolo">Titolo - {{film.title}}</li>
+                <li class="titolo-originale">Titolo originale - {{film.original_title}}</li>
+                <li class="lingua">Lingua - {{film.original_language}}</li>
+                <li class="voto">Voto - {{film.vote_average}}</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Lista Film trovati -->
 
 
       </div>

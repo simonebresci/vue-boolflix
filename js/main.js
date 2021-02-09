@@ -13,6 +13,7 @@ var app = new Vue ({
     httpBody: '/3/search/movie',
     httpRequest: '?api_key=41689b28957d4803002626fc60582afd&query=', //Query di test
     searchInput: 'kill',
+    listaFilm: [],
     query: '',
   },
   mounted() {
@@ -23,13 +24,22 @@ var app = new Vue ({
       // Costruzione query
       query = this.httpUri + this.httpBody + this.httpRequest + this.searchInput;
 
+      const self = this;
+
+      // Svuota listaFilm
+      this.resetListaFilm();
+
       // Chiamata axios
       axios.get(query).then(function(objReceived){
              const result = objReceived.data.results;
 
              console.log("RISULTATI TROVATI: " + result.length);
-             // console.log(result);
+             console.log(result);
              result.forEach((item, i) => {
+               // AGGIUNGI A LISTA FILM
+               self.listaFilm.push(result[i]);
+
+               // OUTPUT SU CONSOLE.LOG
                console.log('# FILM N.' + i);
                console.log("Titolo          : " + result[i].title);
                console.log("Titolo originale: " + result[i].original_title);
@@ -42,15 +52,18 @@ var app = new Vue ({
            });
 
     },
-    pushElement: function (elemento){
-      this.listaEmail.push(elemento);
-    },
-    removeElement: function (index){
-      // Rimuovere elemento con funzione .filter
-      this.listaEmail = this.listaEmail.filter( (element,i) =>{
-        return (i != index);
-      });
+    resetListaFilm: function(){
+      this.listaFilm = [];
     }
+    // pushElement: function (elemento){
+    //   this.listaFilm.push(elemento);
+    // },
+    // removeElement: function (index){
+    //   // Rimuovere elemento con funzione .filter
+    //   this.listaEmail = this.listaEmail.filter( (element,i) =>{
+    //     return (i != index);
+    //   });
+    // }
   }
 
 });
