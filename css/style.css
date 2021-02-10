@@ -60,7 +60,7 @@ h2{
 }
 
 .film .stelline{
-   display: flex; /* Serve ad eliminare spazio fra stelline piene e vuote */
+   display: flex; /* Elimina spazio fra stelline piene e vuote */
 }
 
 .film .voto{

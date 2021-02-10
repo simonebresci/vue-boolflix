@@ -1,9 +1,8 @@
 // https://docs.google.com/document/d/1u4ev8ecrrACEIctVoCc2HIDS69w8G2QLBdq3EDfbzXo/edit
 
 // MILESTONE 2
-// Trasformiamo il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5, lasciando le restanti vuote (troviamo le icone in FontAwesome).
-// Arrotondiamo sempre per eccesso all’unità successiva, non gestiamo icone mezze piene (o mezze vuote :P)
-// Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente, gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
+// Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente,
+ // gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
 //
 // Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv, stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
 // Qui un esempio di chiamata per le serie tv:
@@ -112,7 +111,39 @@ var app = new Vue ({
       },
       showStarRatingEmpty: function(valore){
         return (5 - this.showStarRating(valore));
+      },
+      showLanguageFlag: function(language){
+        const flagURI               = 'https://www.countryflags.io';
+        let   flag                  = language;
+        const flagStyle             = 'shiny' /* flat OR shiny */
+        const size                  = 32; /* size in pixel */
+        const pathImgNonDisponibile = 'https://cdn.icon-icons.com/icons2/1509/PNG/512/actionunavailable_104365.png'
+
+        // Tabella Conversioni codici stati
+        if(language == 'en'){
+          flag = 'gb';
+        }
+
+        const query = flagURI + '/' + flag + '/' + flagStyle + '/' + size + '.png'
+        console.log(query);
+        // Controlla esito GET - se 200 ok, altrimenti imposta immagine default
+        axios.get(query)
+              .then(function(objReceived){
+                // return query;
+
+              })
+              .catch(function(error){
+                console.log("error");
+
+              });
+
+        return query;
+
+
+
+
       }
+
 
       // pushElement: function (elemento){
       //   this.listaFilm.push(elemento);
