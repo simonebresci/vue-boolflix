@@ -9,6 +9,10 @@
 .bg-grey{
   background-color: rgb(245,247,247);
 }
+
+.dbg-border{
+  border: 5px solid violet;
+}
 /* /UTILITY****************************************************************** */
 
 h2{
@@ -34,6 +38,8 @@ h2{
 
 }
 
+
+
 .film{
   display: flex;
   flex-direction: column;
@@ -51,6 +57,7 @@ h2{
   box-shadow: 2px 2px 10px rgba(0,0,0,0.8);
   transition: transform 0.7s;
 }
+
 
 .film .poster{
   margin-bottom:15px;
