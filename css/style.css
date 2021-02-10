@@ -59,6 +59,10 @@ h2{
   transition: opacity 0.2s;
 }
 
+.film .voto{
+  color: orange;
+}
+
 .film ul{
   text-decoration: none;
   list-style: none;
