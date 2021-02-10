@@ -109,6 +109,9 @@ var app = new Vue ({
         result = this.roundUp(result);
 
         return result;
+      },
+      showStarRatingEmpty: function(valore){
+        return (5 - this.showStarRating(valore));
       }
 
       // pushElement: function (elemento){

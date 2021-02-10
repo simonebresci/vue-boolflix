@@ -59,8 +59,16 @@ h2{
   transition: opacity 0.2s;
 }
 
+.film .stelline{
+   display: flex; /* Serve ad eliminare spazio fra stelline piene e vuote */
+}
+
 .film .voto{
   color: orange;
+}
+
+.film .votoEmpty{
+  color: grey;
 }
 
 .film ul{

@@ -37,8 +37,11 @@
                 <li class="titolo">Titolo - {{film.title}}</li>
                 <li class="titolo-originale">Titolo originale - {{film.original_title}}</li>
                 <li class="lingua">Lingua - {{film.original_language}}</li>
-                <!-- <li class="voto">Voto - {{showStarRating(film.vote_average)}}</li> -->
-                <li class="voto"> <i v-for="stellina in showStarRating(film.vote_average)" class="far fa-star"></i></li>
+                <li class="stelline">
+                  <i v-for="stellina in showStarRating(film.vote_average)" class="far fa-star voto"></i>
+                  <i v-for="stellina in showStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
+                </li>
+
 
               </ul>
             </div>
