@@ -43,7 +43,6 @@ var app = new Vue ({
       // Return valore
       return (valore1 * valore2Max) / valore1Max;
     },
-
     // ARROTONDA PER ECCESSO
     roundUp: function(value){
       // Arrontonda per eccesso
@@ -94,46 +93,91 @@ var app = new Vue ({
       this.listaFilm = [];
       this.listaSerieTV = [];
 
-      // QUERY FILM
-      httpUrl = 'https://api.themoviedb.org/3/search/movie';
-      this.standardAPICall(httpUrl)
-      .then(function(objReceived){
-             // Sovrascrivi lista con risposta alla query
-             self.listaFilm = objReceived.data.results;
+      this.searchFilms('https://api.themoviedb.org/3/search/movie');
+      this.searchSerieTV('https://api.themoviedb.org/3/search/tv');
 
-
-             // Debug*******************************
-             const result = objReceived.data.results;
-             console.log("RISULTATI TROVATI: " + result.length);
-             result.forEach((item, i) => {
-               // OUTPUT SU CONSOLE.LOG
-               console.log('# FILM N.' + i);
-               self.consoleLogResultFilm(item);
-             });
-             console.log('');
-             // /Debug*******************************
-           });
+      // LANCIA QUERY FILM
+      // httpUrl = 'https://api.themoviedb.org/3/search/movie';
+      // this.standardAPICall(httpUrl)
+      // .then(function(objReceived){
+      //        // Sovrascrivi lista con risposta alla query
+      //        self.listaFilm = objReceived.data.results;
+      //
+      //
+      //        // Debug*******************************
+      //        const result = objReceived.data.results;
+      //        console.log("RISULTATI TROVATI: " + result.length);
+      //        result.forEach((item, i) => {
+      //          // OUTPUT SU CONSOLE.LOG
+      //          console.log('# FILM N.' + i);
+      //          self.consoleLogResultFilm(item);
+      //        });
+      //        console.log('');
+      //        // /Debug*******************************
+      //      });
       // /QUERY FILM
 
-      // QUERY SERIE TV
-      httpUrl = 'https://api.themoviedb.org/3/search/tv';
-      this.standardAPICall(httpUrl)
-      .then(function(objReceived){
-             // Sovrascrivi lista con risposta alla query
-             self.listaSerieTV = objReceived.data.results;
+      // LANCIA QUERY SERIE TV
+      // httpUrl = 'https://api.themoviedb.org/3/search/tv';
+      // this.standardAPICall(httpUrl)
+      // .then(function(objReceived){
+      //        // Sovrascrivi lista con risposta alla query
+      //        self.listaSerieTV = objReceived.data.results;
+      //
+      //        // Debug*******************************************
+      //        objReceived.data.results;
+      //        console.log("RISULTATI TROVATI: " + result.length);
+      //        result.forEach((item, i) => {
+      //          // OUTPUT SU CONSOLE.LOG
+      //          console.log('# SERIE TV N.' + i);
+      //          self.consoleLogResultSerieTv(result[i]);
+      //        });
+      //        console.log('');
+      //        // /Debug*******************************************
+      //      });
 
-             // Debug*******************************************
-             objReceived.data.results;
-             console.log("RISULTATI TROVATI: " + result.length);
-             result.forEach((item, i) => {
-               // OUTPUT SU CONSOLE.LOG
-               console.log('# SERIE TV N.' + i);
-               self.consoleLogResultSerieTv(result[i]);
+      },
+      searchFilms: function(url){
+        const httpUrl = url;
+        const self = this;
+        this.standardAPICall(httpUrl)
+        .then(function(objReceived){
+               // Sovrascrivi lista con risposta alla query
+               self.listaFilm = objReceived.data.results;
+
+
+               // Debug*******************************
+               const result = objReceived.data.results;
+               console.log("RISULTATI TROVATI: " + result.length);
+               result.forEach((item, i) => {
+                 // OUTPUT SU CONSOLE.LOG
+                 console.log('# FILM N.' + i);
+                 self.consoleLogResultFilm(item);
+               });
+               console.log('');
+               // /Debug*******************************
              });
-             console.log('');
-             // /Debug*******************************************
-           });
+      },
+      searchSerieTV: function(url){
+        const httpUrl = url;
+        const self = this;
+        this.standardAPICall(httpUrl)
+        .then(function(objReceived){
+               // Sovrascrivi lista con risposta alla query
+               self.listaSerieTV = objReceived.data.results;
 
+
+               // Debug*******************************
+               const result = objReceived.data.results;
+               console.log("RISULTATI TROVATI: " + result.length);
+               result.forEach((item, i) => {
+                 // OUTPUT SU CONSOLE.LOG
+                 console.log('# FILM N.' + i);
+                 self.consoleLogResultSerieTv(item);
+               });
+               console.log('');
+               // /Debug*******************************
+             });
       },
 
       // METODI GRAFICA*********************************************************
