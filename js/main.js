@@ -1,21 +1,8 @@
 // https://docs.google.com/document/d/1u4ev8ecrrACEIctVoCc2HIDS69w8G2QLBdq3EDfbzXo/edit
 
-// MILESTONE 2
-// Trasformiamo poi la stringa statica della lingua in una vera e propria bandiera della nazione corrispondente,
- // gestendo il caso in cui non abbiamo la bandiera della nazione ritornata dall’API (le flag non ci sono in FontAwesome).
-//
-// Allarghiamo poi la ricerca anche alle serie tv. Con la stessa azione di ricerca dovremo prendere sia i film che corrispondono alla query, sia le serie tv,
-// stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
-// Qui un esempio di chiamata per le serie tv:
-// https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&language=it_IT&query=scrubs
-// CONSIGLIO: FILM SEPARATI DALLE SERIE
 
 
-// Migliorie
-// 1) x Aggiungi tutto array anzichè fare push di ogni singolo elemento ==> usa spread operator
-// 2) x Creare array unico con film + serieTV
-// 3) x Inserire unico v-for in visualizzazione HTML
-// 4) x Eliminare push singoli elementi
+// TODO: mostrare immagine alternativa se poster non presente
 
 
 // VUE *************************************************************************
@@ -26,10 +13,9 @@ var app = new Vue ({
     searchInput: 'Kill Bill',
 
     // RISULTATO QUERY
-    listaFilm: [],            // Li
-    listaSerieTV: [],
+    listaFilm: [],            // Lista Film
+    listaSerieTV: [],         // Lista Serie Tv
     listaAll: [],             // Lista contenente tutte le fonti
-    lingueDisponibili: []
 
   },
   mounted() {
@@ -87,7 +73,6 @@ var app = new Vue ({
     // /METODI DEBUG ********************************************************
     // RICERCA QUERY ********************************
     searchQuery: function(){
-      let httpUrl = '';
       const self = this;
 
       //Svuota liste
@@ -158,26 +143,37 @@ var app = new Vue ({
       showLanguageFlag: function(language){
         const flagURI               = 'https://www.countryflags.io';
         let   flag                  = language;
-        const flagStyle             = 'flat'; /* flat OR shiny */
-        const size                  = 32; /* size in pixel */
+        const flagStyle             = 'flat';        /* flat OR shiny */
+        const size                  = 64;           /* size in pixel */
         const pathImgNonDisponibile = 'empty';
         const languageAccepted      = ['it','en','es', 'fr'] ;
 
         // Tabella Conversioni codici stati
-        if(language == 'en'){
+        if(flag == 'en'){
           flag = 'gb';
         }
 
         const query = flagURI + '/' + flag + '/' + flagStyle + '/' + size + '.png';
 
+        // console.log('Chiamo axios per icona:' + query);
+        // axios.get(query)
+        //       .then(function(objReceived){
+        //         console.log('icona trovata');
+        //       })
+        //       .catch(function(error){
+        //         console.log('icona non trovata');
+        //         console.log(error)
+        //        });
+
+
         if (languageAccepted.includes(language)){
           return query;
         }else{
-          return flag;
+          return null;
         }
 
 
-        return query;
+
 
       }
 
