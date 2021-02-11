@@ -12,10 +12,10 @@
 
 
 // Migliorie
-// 1) Aggiungi tutto array anzichè fare push di ogni singolo elemento ==> usa spread operator
-// 2) Creare array unico con film + serieTV
-// 3) Inserire unico v-for in visualizzazione HTML
-// 4) Eliminare push singoli elementi
+// 1) x Aggiungi tutto array anzichè fare push di ogni singolo elemento ==> usa spread operator
+// 2) x Creare array unico con film + serieTV
+// 3) x Inserire unico v-for in visualizzazione HTML
+// 4) x Eliminare push singoli elementi
 
 
 // VUE *************************************************************************
@@ -26,8 +26,9 @@ var app = new Vue ({
     searchInput: 'Kill Bill',
 
     // RISULTATO QUERY
-    listaFilm: [],
+    listaFilm: [],            // Li
     listaSerieTV: [],
+    listaAll: [],             // Lista contenente tutte le fonti
     lingueDisponibili: []
 
   },
@@ -92,59 +93,21 @@ var app = new Vue ({
       //Svuota liste
       this.listaFilm = [];
       this.listaSerieTV = [];
+      this.listaAll = [];
 
+      // Cerca film e serie TV
       this.searchFilms('https://api.themoviedb.org/3/search/movie');
       this.searchSerieTV('https://api.themoviedb.org/3/search/tv');
 
-      // LANCIA QUERY FILM
-      // httpUrl = 'https://api.themoviedb.org/3/search/movie';
-      // this.standardAPICall(httpUrl)
-      // .then(function(objReceived){
-      //        // Sovrascrivi lista con risposta alla query
-      //        self.listaFilm = objReceived.data.results;
-      //
-      //
-      //        // Debug*******************************
-      //        const result = objReceived.data.results;
-      //        console.log("RISULTATI TROVATI: " + result.length);
-      //        result.forEach((item, i) => {
-      //          // OUTPUT SU CONSOLE.LOG
-      //          console.log('# FILM N.' + i);
-      //          self.consoleLogResultFilm(item);
-      //        });
-      //        console.log('');
-      //        // /Debug*******************************
-      //      });
-      // /QUERY FILM
-
-      // LANCIA QUERY SERIE TV
-      // httpUrl = 'https://api.themoviedb.org/3/search/tv';
-      // this.standardAPICall(httpUrl)
-      // .then(function(objReceived){
-      //        // Sovrascrivi lista con risposta alla query
-      //        self.listaSerieTV = objReceived.data.results;
-      //
-      //        // Debug*******************************************
-      //        objReceived.data.results;
-      //        console.log("RISULTATI TROVATI: " + result.length);
-      //        result.forEach((item, i) => {
-      //          // OUTPUT SU CONSOLE.LOG
-      //          console.log('# SERIE TV N.' + i);
-      //          self.consoleLogResultSerieTv(result[i]);
-      //        });
-      //        console.log('');
-      //        // /Debug*******************************************
-      //      });
-
       },
       searchFilms: function(url){
-        const httpUrl = url;
         const self = this;
-        this.standardAPICall(httpUrl)
+        this.standardAPICall(url)
         .then(function(objReceived){
                // Sovrascrivi lista con risposta alla query
                self.listaFilm = objReceived.data.results;
-
+               // Aggiungi film a listaAll
+               self.listaAll = [...self.listaAll, ...self.listaFilm];
 
                // Debug*******************************
                const result = objReceived.data.results;
@@ -159,13 +122,13 @@ var app = new Vue ({
              });
       },
       searchSerieTV: function(url){
-        const httpUrl = url;
         const self = this;
-        this.standardAPICall(httpUrl)
+        this.standardAPICall(url)
         .then(function(objReceived){
                // Sovrascrivi lista con risposta alla query
                self.listaSerieTV = objReceived.data.results;
-
+               // Aggiungi film a listaAll
+               self.listaAll = [...self.listaAll, ...self.listaSerieTV];
 
                // Debug*******************************
                const result = objReceived.data.results;

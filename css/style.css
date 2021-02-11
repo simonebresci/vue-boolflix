@@ -14,6 +14,12 @@
   border: 5px solid violet;
 }
 /* /UTILITY****************************************************************** */
+
+h2{
+  color:red;
+  font-size: 36px;
+}
+
 .container{
   width: 100%;
   margin: 0 auto;

@@ -33,6 +33,34 @@
           <button @click="searchQuery" > CERCA </button>
           <!-- /Search Bar -->
 
+          <!-- Lista All -->
+          <h2>LISTA ALL</h2>
+          <div class="box-film">
+            <!-- Film -->
+            <div v-for="film in listaAll" class="film">
+              <div style="font-size: 24px;color:white"> <span v-if="film.name">SERIE TV </span><span v-if="film.title">FILM </div>
+              <!-- Poster - immagine -->
+              <img class="poster" :src="'https://www.themoviedb.org/t/p/w94_and_h141_bestv2/'+ film.poster_path" alt="Immagine non disponibile">
+              <ul>
+                <!-- Titolo, titolo originale -->
+                <li v-if="film.title" class="titolo">Titolo - {{film.title}}</li>
+                <li v-if="film.name" class="titolo">Titolo - {{film.name}}</li>
+                <li v-if="film.original_title" class="titolo-originale">Titolo originale - {{film.original_title}}</li>
+                <li v-if="film.original_name" class="titolo-originale">Titolo originale - {{film.original_name}}</li>
+                <li class="lingua">Lingua - {{film.original_language}}</li>
+                <!-- Lingua - Mostra bandiera, se non presente mostra caratteri -->
+                <img v-if="(showLanguageFlag(film.original_language).length > 2)":src="showLanguageFlag(film.original_language)">
+                <span v-else="(showLanguageFlag(film.original_language).length >2)">{{showLanguageFlag(film.original_language)}}</span>
+                <!-- Rating - Mostra bandiera, se non presente mostra caratteri -->
+                <li class="stelline">
+                  <i v-for="stellina in showStarRating(film.vote_average)" class="fas fa-star voto"></i>
+                  <i v-for="stellina in showStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
+                </li>
+              </ul>
+            </div>
+          <!-- /Lista All -->
+
+          <h2>LISTA FILM</h2>
           <!-- Lista Film trovati -->
           <div class="box-film">
             <!-- Film -->
@@ -57,6 +85,7 @@
             </div>
             <!-- /Film -->
 
+            <h2>LISTA SERIE TV</h2>
             <!-- Serie TV -->
             <div v-for="film in listaSerieTV" class="film serie-tv">
               <span style="font-size: 24px;color:white"> SERIE TV </span>
