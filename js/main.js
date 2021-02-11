@@ -8,31 +8,22 @@
 // stando attenti ad avere alla fine dei valori simili (le serie e i film hanno campi nel JSON di risposta diversi, simili ma non sempre identici)
 // Qui un esempio di chiamata per le serie tv:
 // https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&language=it_IT&query=scrubs
-
-
 // CONSIGLIO: FILM SEPARATI DALLE SERIE
 
-// 1) x sTELLINE
-// 2) x bandiere
-// 3) x Query film + serie TV
+
 
 
 // VUE *************************************************************************
 var app = new Vue ({
   el: '#root',
   data: {
-    // QUERY
-
-    query: '',
+    // I/O INTERFACCIA GRAFICA
+    searchInput: 'Kill Bill',
 
     // RISULTATO QUERY
     listaFilm: [],
     listaSerieTV: [],
-    lingueDisponibili: [],
-
-    // I/O INTERFACCIA GRAFICA
-    searchInput: 'Kill Bill',
-
+    lingueDisponibili: []
 
   },
   mounted() {
@@ -42,26 +33,42 @@ var app = new Vue ({
     // METODI GENERICI *********************************************************
     // VALORE DA TRASFORMARE CON PROPORZIONE
     proportion: function(valore1,valore1Max,valore2Max){
-      let result = -1;
       // Es. 7.5/10 = x / 5
-      // x = (7.5 * 5) /10
       // x = (valore1 * valore2Max) / valore1Max
-      result = (valore1 * valore2Max) / valore1Max;
-
       // Return valore
-      return result;
+      return (valore1 * valore2Max) / valore1Max;
     },
 
-    // ARROTONDA PER eccesso
+    // ARROTONDA PER ECCESSO
     roundUp: function(value){
       // Arrontonda per eccesso
       if( value > parseInt(value)){
-        return parseInt(value) + 1
+        return parseInt(value) + 1;
       } else{
         return value;
       }
     },
     // /METODI GENERICI ********************************************************
+    // METODI DEBUG ********************************************************
+    consoleLogResultFilm: function (result){
+      console.log("Titolo          : " + result.title);
+      console.log("Titolo originale: " + result.original_title);
+      console.log("Lingua originale: " + result.original_language);
+      console.log("Voto medio      : " + result.vote_average);
+      console.log("Voto in stelline: " + this.showStarRating(result.vote_average));
+      console.log('');
+
+    },
+    consoleLogResultSerieTv: function (result){
+      console.log("Titolo          : " + result.name);
+      console.log("Titolo originale: " + result.original_name);
+      console.log("Lingua originale: " + result.original_language);
+      console.log("Voto medio      : " + result.vote_average);
+      console.log("Voto in stelline: " + this.showStarRating(result.vote_average));
+      console.log('');
+
+    },
+    // /METODI DEBUG ********************************************************
     // RICERCA QUERY ********************************
     searchQuery: function(){
 
@@ -85,19 +92,13 @@ var app = new Vue ({
              const result = objReceived.data.results;
 
              console.log("RISULTATI TROVATI: " + result.length);
-             console.log(result);
              result.forEach((item, i) => {
                // AGGIUNGI A LISTA FILM
                self.listaFilm.push(result[i]);
 
                // OUTPUT SU CONSOLE.LOG
                console.log('# FILM N.' + i);
-               console.log("Titolo          : " + result[i].title);
-               console.log("Titolo originale: " + result[i].original_title);
-               console.log("Lingua originale: " + result[i].original_language);
-               console.log("Voto medio      : " + result[i].vote_average);
-               console.log("Voto in stelline: " + self.showStarRating(result[i].vote_average));
-               console.log('');
+               self.consoleLogResultFilm(result[i]);
              });
 
              console.log('');
@@ -113,19 +114,14 @@ var app = new Vue ({
              const result = objReceived.data.results;
 
              console.log("RISULTATI TROVATI: " + result.length);
-             console.log(result);
              result.forEach((item, i) => {
                // AGGIUNGI A LISTA FILM
                self.listaSerieTV.push(result[i]);
 
                // OUTPUT SU CONSOLE.LOG
                console.log('# SERIE TV N.' + i);
-               console.log("Titolo          : " + result[i].name);
-               console.log("Titolo originale: " + result[i].original_name);
-               console.log("Lingua originale: " + result[i].original_language);
-               console.log("Voto medio      : " + result[i].vote_average);
-               console.log("Voto in stelline: " + self.showStarRating(result[i].vote_average));
-               console.log('');
+               self.consoleLogResultSerieTv(result[i]);
+
              });
 
              console.log('');
@@ -136,9 +132,8 @@ var app = new Vue ({
 
       // METODI GRAFICA*********************************************************
       showStarRating: function(valore){
-        let result = -1;
-        result = this.proportion(valore,10,5);
-
+        // Proporzione
+        let result = (this.proportion(valore,10,5));
         // Round up
         result = this.roundUp(result);
 
@@ -154,6 +149,7 @@ var app = new Vue ({
         const size                  = 32; /* size in pixel */
         const pathImgNonDisponibile = 'empty';
         const languageAccepted      = ['it','en','es', 'fr'] ;
+
         // Tabella Conversioni codici stati
         if(language == 'en'){
           flag = 'gb';
@@ -168,25 +164,7 @@ var app = new Vue ({
         }
 
 
-        // console.log(query);
-        // Controlla esito GET - se 200 ok, altrimenti imposta immagine default
-        // const self = this;
-        // axios.get(query)
-        //       .then(function(objReceived){
-        //         console.log('Query ok:' + query);
-        //         // console.log('inserisco lingua nell array');
-        //         // self.lingueDisponibili.push(query);
-        //
-        //       })
-        //       .catch(function(error){
-        //         console.log('query in errore: ' + query);
-        //
-        //       });
-
         return query;
-
-
-
 
       }
 
