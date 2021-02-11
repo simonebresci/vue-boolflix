@@ -11,6 +11,11 @@
 // CONSIGLIO: FILM SEPARATI DALLE SERIE
 
 
+// Migliorie
+// 1) Aggiungi tutto array anzichè fare push di ogni singolo elemento ==> usa spread operator
+// 2) Creare array unico con film + serieTV
+// 3) Inserire unico v-for in visualizzazione HTML
+// 4) Eliminare push singoli elementi
 
 
 // VUE *************************************************************************
@@ -48,8 +53,19 @@ var app = new Vue ({
         return value;
       }
     },
+    standardAPICall: function(URL){
+      return axios.get(URL,{
+              params: {
+                api_key: '41689b28957d4803002626fc60582afd',
+                query: this.searchInput,
+                language: 'it-IT',
+              },
+            });
+
+    },
     // /METODI GENERICI ********************************************************
     // METODI DEBUG ********************************************************
+
     consoleLogResultFilm: function (result){
       console.log("Titolo          : " + result.title);
       console.log("Titolo originale: " + result.original_title);
@@ -71,62 +87,52 @@ var app = new Vue ({
     // /METODI DEBUG ********************************************************
     // RICERCA QUERY ********************************
     searchQuery: function(){
-
-      // QUERY
-      const httpUri     = 'https://api.themoviedb.org';
-      let   httpBody    = '';
-      const httpRequest = '?api_key=41689b28957d4803002626fc60582afd&query=';
+      let httpUrl = '';
       const self = this;
 
-      // Svuota listaFilm
+      //Svuota liste
       this.listaFilm = [];
       this.listaSerieTV = [];
 
-      // Costruzione query film
-      httpBody    = '/3/search/movie'; //Film
-      query = httpUri + httpBody + httpRequest + this.searchInput;
-
       // QUERY FILM
-      // Chiamata axios
-      axios.get(query).then(function(objReceived){
-             const result = objReceived.data.results;
+      httpUrl = 'https://api.themoviedb.org/3/search/movie';
+      this.standardAPICall(httpUrl)
+      .then(function(objReceived){
+             // Sovrascrivi lista con risposta alla query
+             self.listaFilm = objReceived.data.results;
 
+
+             // Debug*******************************
+             const result = objReceived.data.results;
              console.log("RISULTATI TROVATI: " + result.length);
              result.forEach((item, i) => {
-               // AGGIUNGI A LISTA FILM
-               self.listaFilm.push(result[i]);
-
                // OUTPUT SU CONSOLE.LOG
                console.log('# FILM N.' + i);
-               self.consoleLogResultFilm(result[i]);
+               self.consoleLogResultFilm(item);
              });
-
              console.log('');
+             // /Debug*******************************
            });
       // /QUERY FILM
 
-      // Costruzione query serie TV
-      httpBody    = '/3/search/tv'; //serie tv
-      query = httpUri + httpBody + httpRequest + this.searchInput;
-
       // QUERY SERIE TV
-      axios.get(query).then(function(objReceived){
-             const result = objReceived.data.results;
+      httpUrl = 'https://api.themoviedb.org/3/search/tv';
+      this.standardAPICall(httpUrl)
+      .then(function(objReceived){
+             // Sovrascrivi lista con risposta alla query
+             self.listaSerieTV = objReceived.data.results;
 
+             // Debug*******************************************
+             objReceived.data.results;
              console.log("RISULTATI TROVATI: " + result.length);
              result.forEach((item, i) => {
-               // AGGIUNGI A LISTA FILM
-               self.listaSerieTV.push(result[i]);
-
                // OUTPUT SU CONSOLE.LOG
                console.log('# SERIE TV N.' + i);
                self.consoleLogResultSerieTv(result[i]);
-
              });
-
              console.log('');
+             // /Debug*******************************************
            });
-      // /QUERY SERIE TV
 
       },
 
