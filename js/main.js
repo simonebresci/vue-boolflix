@@ -69,6 +69,7 @@ var app = new Vue ({
       console.log("Titolo originale: " + result.original_title);
       console.log("Lingua originale: " + result.original_language);
       console.log("Voto medio      : " + result.vote_average);
+      console.log("Overview        : " + result.overview);
       console.log("Voto in stelline: " + this.showStarRating(result.vote_average));
       console.log('');
 
@@ -77,6 +78,7 @@ var app = new Vue ({
       console.log("Titolo          : " + result.name);
       console.log("Titolo originale: " + result.original_name);
       console.log("Lingua originale: " + result.original_language);
+      console.log("Overview        : " + result.overview);
       console.log("Voto medio      : " + result.vote_average);
       console.log("Voto in stelline: " + this.showStarRating(result.vote_average));
       console.log('');
@@ -132,7 +134,7 @@ var app = new Vue ({
                console.log("RISULTATI TROVATI: " + result.length);
                result.forEach((item, i) => {
                  // OUTPUT SU CONSOLE.LOG
-                 console.log('# FILM N.' + i);
+                 console.log('# SERIE TV N.' + i);
                  self.consoleLogResultSerieTv(item);
                });
                console.log('');
@@ -161,7 +163,20 @@ var app = new Vue ({
         const flagStyle             = 'flat';        /* flat OR shiny */
         const size                  = 64;           /* size in pixel */
         const pathImgNonDisponibile = 'empty';
-        const languageAccepted      = ['ab','aa','af','ak','sq','am','ar','an','hy','as','av','ae','ay','az','bm','ba','eu','be','bn','bh','bi','bs','br','bg','my','ca','km','ch','ce','ny','zh','cu','cv','kw','co','cr','hr','cs','da','dv','nl','dz','en','eo','et','ee','fo','fj','fi','fr','ff','gd','gl','lg','ka','de','ki','el','kl','gn','gu','ht','ha','he','hz','hi','ho','hu','is','io','ig','id','ia','ie','iu','ik','ga','it','ja','jv','kn','kr','ks','kk','rw','kv','kg','ko','kj','ku','ky','lo','la','lv','lb','li','ln','lt','lu','mk','mg','ms','ml','mt','gv','mi','mr','mh','ro','mn','na','nv','nd','ng','ne','se','no','nb','nn','ii','oc','oj','or','om','os','pi','pa','ps','fa','pl','pt','qu','rm','rn','ru','sm','sg','sa','sc','sr','sn','sd','si','sk','sl','so','st','nr','es','su','sw','ss','sv','tl','ty','tg','ta','tt','te','th','bo','ti','to','ts','tn','tr','tk','tw','ug','uk','ur','uz','ve','vi','vo','wa','cy','fy','wo','xh','yi','yo','za','zu'];
+        const languageAccepted      = ['ab','aa','af','ak','sq','am','ar','an',
+        'hy','as','av','ae','ay','az','bm','ba','eu','be','bn','bh','bi','bs',
+        'br','bg','my','ca','km','ch','ce','ny','zh','cu','cv','kw','co','cr',
+        'hr','cs','da','dv','nl','dz','en','eo','et','ee','fo','fj','fi','fr',
+        'ff','gd','gl','lg','ka','de','ki','el','kl','gn','gu','ht','ha','he',
+        'hz','hi','ho','hu','is','io','ig','id','ia','ie','iu','ik','ga','it',
+        'ja','jv','kn','kr','ks','kk','rw','kv','kg','ko','kj','ku','ky','lo',
+        'la','lv','lb','li','ln','lt','lu','mk','mg','ms','ml','mt','gv','mi',
+        'mr','mh','ro','mn','na','nv','nd','ng','ne','se','no','nb','nn','ii',
+        'oc','oj','or','om','os','pi','pa','ps','fa','pl','pt','qu','rm','rn',
+        'ru','sm','sg','sa','sc','sr','sn','sd','si','sk','sl','so','st','nr',
+        'es','su','sw','ss','sv','tl','ty','tg','ta','tt','te','th','bo','ti',
+        'to','ts','tn','tr','tk','tw','ug','uk','ur','uz','ve','vi','vo','wa',
+        'cy','fy','wo','xh','yi','yo','za','zu'];
 
 
 
