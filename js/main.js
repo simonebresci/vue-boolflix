@@ -1,5 +1,10 @@
 // https://docs.google.com/document/d/1u4ev8ecrrACEIctVoCc2HIDS69w8G2QLBdq3EDfbzXo/edit
 
+// Trasformiamo quello che abbiamo fatto fino ad ora in una vera e propria webapp, creando un layout completo simil-Netflix:
+// Un header che contiene logo e search bar
+// Dopo aver ricercato qualcosa nella searchbar, i risultati appaiono sotto forma di “card” in cui lo sfondo è rappresentato dall’immagine di copertina (consiglio la poster_path con w342)
+// Andando con il mouse sopra una card (on hover), appaiono le informazioni aggiuntive già prese nei punti precedenti più la overview
+
 
 
 // TODO: mostrare immagine alternativa se poster non presente
@@ -53,9 +58,9 @@ var app = new Vue ({
     bandieraNonDisponibile: function(event){
       event.target.src = "";
     },
-    copertinaNonDisponibile: function(event) {
-      event.target.src = "https://images-na.ssl-images-amazon.com/images/I/317s8kIy1WL._AC_.jpg";
-    },
+    // copertinaNonDisponibile: function(event) {
+    //   event.target.src = "https://images-na.ssl-images-amazon.com/images/I/317s8kIy1WL._AC_.jpg";
+    // },
     // /METODI GENERICI ********************************************************
     // METODI DEBUG ********************************************************
 
@@ -136,6 +141,9 @@ var app = new Vue ({
       },
 
       // METODI GRAFICA*********************************************************
+      getPosterSrc: function(film){
+        return 'https://www.themoviedb.org/t/p/w342/'+ film.poster_path;
+      },
       showStarRating: function(valore){
         // Proporzione
         let result = (this.proportion(valore,10,5));

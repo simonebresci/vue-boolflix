@@ -41,7 +41,9 @@
               <!-- Debug -->
               <div style="font-size: 24px;color:white"> <span v-if="film.name">SERIE TV </span><span v-if="film.title">FILM </div>
               <!-- Poster - immagine -->
-              <img class="poster" :src="'https://www.themoviedb.org/t/p/w342/'+ film.poster_path" alt="Immagine non disponibile" @error="copertinaNonDisponibile">
+              <img v-if="film.poster_path" class="poster" :src="getPosterSrc(film)" alt="Immagine non disponibile">
+              <img v-else class="poster" alt="immagine non disponibile" src="https://images-na.ssl-images-amazon.com/images/I/317s8kIy1WL._AC_.jpg">
+
               <ul>
                 <!-- Titolo, titolo originale -->
                 <li v-if="film.title" class="titolo">Titolo - {{film.title}}</li>
