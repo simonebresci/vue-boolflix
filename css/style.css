@@ -10,25 +10,68 @@
   background-color: rgb(245,247,247);
 }
 
-.dbg-border{
-  border: 5px solid violet;
+.menu-inline-1, .menu-inline-1 li{
+  display: inline-block;
+  list-style: none;
+  text-decoration: none;
+  font-weight: bold;
 }
+.menu-inline-1 li{
+  margin-right: 20px;
+}
+
+.menu-inline-1 li:hover{
+  color: red;
+}
+
+
 /* /UTILITY****************************************************************** */
 
-h2{
-  color:red;
-  font-size: 36px;
+body{
+  background-color: black;
 }
 
 .container{
   width: 100%;
+  min-width: 1200px;
+  height: 100%;
   margin: 0 auto;
-  background-color: lightgrey;
+  background-color: black;
 }
 
 .content{
   /* EMPTY */
+  color: white;
+  padding: 20px 60px;
 }
+
+
+.main-top{
+  display: flex;
+  width:100%;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.main-menu .logo{
+  display: inline-block;
+}
+.main-menu .logo img{
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.action-menu .menu-inline-1 li:last-child{
+  margin-right: 0px;
+}
+
+.main-center{
+  /* border: 1px solid blue; */
+}
+
 
 .box-film{
   display: flex;

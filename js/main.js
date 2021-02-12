@@ -5,9 +5,6 @@
 // Dopo aver ricercato qualcosa nella searchbar, i risultati appaiono sotto forma di “card” in cui lo sfondo è rappresentato dall’immagine di copertina (consiglio la poster_path con w342)
 // Andando con il mouse sopra una card (on hover), appaiono le informazioni aggiuntive già prese nei punti precedenti più la overview
 
-
-
-// TODO: mostrare immagine alternativa se poster non presente
 // TODO: pagina di test di tutte le bandiere
 
 
@@ -16,7 +13,7 @@ var app = new Vue ({
   el: '#root',
   data: {
     // I/O INTERFACCIA GRAFICA
-    searchInput: 'Japan',
+    searchInput: 'Kill Bill',
 
     // RISULTATO QUERY
     listaFilm: [],            // Lista Film
