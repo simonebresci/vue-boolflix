@@ -96,6 +96,7 @@ h2{
 .box-hide-scrollbar{
   height: 520px;
   overflow-y: hidden;
+  margin-bottom: 30px;
 }
 
 .box-film{
@@ -182,6 +183,23 @@ h2{
 
 .film:hover ul, .film:hover .poster {
   opacity: 100%;
+}
+
+.film ul li{
+  margin-bottom: 5px;
+}
+
+.film ul li.titolo {
+  font-size: 24px;
+}
+
+.film ul li.titolo-originale{
+  font-size: 18px;
+}
+
+.film ul li.overview{
+  margin-top: 15px;
+  font-size: 18px;
 }
 
 .film:hover{

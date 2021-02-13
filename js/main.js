@@ -6,7 +6,9 @@
 // Andando con il mouse sopra una card (on hover), appaiono le informazioni aggiuntive già prese nei punti precedenti più la overview
 
 // TODO: pagina di test di tutte le bandiere
-
+// TODO: Gestire overflow campo overview
+// TODO: Font custom
+// TODO: copertine tagliate?
 
 // VUE *************************************************************************
 var app = new Vue ({
@@ -14,7 +16,8 @@ var app = new Vue ({
   data: {
     // I/O INTERFACCIA GRAFICA
     searchInput: 'Kill Bill',
-    showSezioni: ['listaAll', 'listaAll', 'listaAll'],
+    selected: '',
+    showSezioni: ['listaAll', 'listaFilm', 'listaSerieTV'],
 
     // RISULTATO QUERY
     listaFilm: [],            // Lista Film
@@ -57,6 +60,12 @@ var app = new Vue ({
     },
     bandieraNonDisponibile: function(event){
       event.target.src = "";
+    },
+    getSezione: function(section){
+      // console.log(this.[section]);
+      console.log(section);
+
+      return section;
     },
     // copertinaNonDisponibile: function(event) {
     //   event.target.src = "https://images-na.ssl-images-amazon.com/images/I/317s8kIy1WL._AC_.jpg";
