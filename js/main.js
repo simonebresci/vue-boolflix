@@ -14,11 +14,14 @@ var app = new Vue ({
   data: {
     // I/O INTERFACCIA GRAFICA
     searchInput: 'Kill Bill',
+    showSezioni: ['listaAll', 'listaAll', 'listaAll'],
 
     // RISULTATO QUERY
     listaFilm: [],            // Lista Film
     listaSerieTV: [],         // Lista Serie Tv
     listaAll: [],             // Lista contenente tutte le fonti
+
+
 
   },
   mounted() {
