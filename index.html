@@ -42,7 +42,7 @@
               <ul class="menu-inline-1">
                 <li>
                   <input
-                  name="search-bar"
+                  class="search-bar"
                   v-model="searchInput"
                   @keyup.enter="searchQuery">
                 </li>
@@ -99,7 +99,7 @@
                       <div  class="overview" v-if="film.overview">Overview - {{film.overview}}</div>
 
                       <!-- Predisposizione bonus -->
-                      <br>
+                      <!-- <br>
                       <div class="attori">
                         <span>ATTORI PARTECIPANTI</span>
                         <ul>
@@ -120,7 +120,7 @@
                           <li> GENERE 4</li>
                           <li> GENERE 5</li>
                         </ul>
-                      </div>
+                      </div> -->
                       <!-- /Predisposizione bonus  -->
 
                     </ul>
