@@ -72,10 +72,17 @@ body{
   /* border: 1px solid blue; */
 }
 
+.box-hide-scrollbar{
+  height: 520px;
+  overflow-y: hidden;
+}
 
 .box-film{
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 550px;
 }
 
 .film{
@@ -84,7 +91,8 @@ body{
   flex-direction: column;
   align-items: center;
   width: 352px;
-  min-height: 510px;
+  min-width: 352px;
+  height: 510px;
   background-color: rgba(0,0,0,1);
   border: 5px solid rgba(0,0,0,0.5);
   color: white;
@@ -112,6 +120,7 @@ body{
   position: absolute;
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
   top:0;
   left:0;
   z-index: 1;
@@ -156,7 +165,6 @@ body{
 
 .film:hover{
   cursor: pointer;
-  transform: scale(1.2);
   border: 4px solid rgba(255,0,0,1);
   box-shadow: 2px 2px 20px rgba(255,0,0,1);
   background-color: rgba(0,0,0,0.9);

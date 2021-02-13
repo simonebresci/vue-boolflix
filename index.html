@@ -61,45 +61,49 @@
           <div class="main-center">
             <!-- Lista All -->
             <h2>LISTA ALL</h2>
-            <div class="box-film">
-              <!-- Film -->
-              <div v-for="film in listaAll" class="film">
+            <h3>Scroll films with shift+mouse wheel</h3>
+            <div class="box-hide-scrollbar">
+              <div class="box-film">
+                <!-- Film -->
+                <div v-for="film in listaAll" class="film">
 
-                <!-- Poster - immagine -->
-                <div class="layer-copertina">
-                  <img v-if="film.poster_path" class="poster" :src="getPosterSrc(film)" alt="Immagine non disponibile">
-                  <img v-else class="poster" alt="immagine non disponibile" src="https://www.altavod.com/assets/images/poster-placeholder.png">
+                  <!-- Poster - immagine -->
+                  <div class="layer-copertina">
+                    <img v-if="film.poster_path" class="poster" :src="getPosterSrc(film)" alt="Immagine non disponibile">
+                    <img v-else class="poster" alt="immagine non disponibile" src="https://www.altavod.com/assets/images/poster-placeholder.png">
+                  </div>
+
+                  <div class="layer-informazioni">
+
+                    <ul>
+                      <!-- Titolo, titolo originale -->
+                      <!-- Debug -->
+                      <div style="font-size: 24px;color:white"> <span v-if="film.name">SERIE TV </span><span v-if="film.title">FILM </div>
+                      <li v-if="film.title" class="titolo">Titolo - {{film.title}}</li>
+                      <li v-if="film.name" class="titolo">Titolo - {{film.name}}</li>
+                      <li v-if="film.original_title" class="titolo-originale">Titolo originale - {{film.original_title}}</li>
+                      <li v-if="film.original_name" class="titolo-originale">Titolo originale - {{film.original_name}}</li>
+
+                      <!-- Lingua  -->
+                      <img v-if="showLanguageFlag(film.original_language)" :src="showLanguageFlag(film.original_language)">
+                      <div v-else="showLanguageFlag(film.original_language)">Lingua - {{film.original_language}}</div>
+
+                      <!-- Rating - Mostra bandiera, se non presente mostra caratteri -->
+                      <li class="stelline">
+                        <i v-for="stellina in showStarRating(film.vote_average)" class="fas fa-star voto"></i>
+                        <i v-for="stellina in showStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
+                      </li>
+                      <!-- Overview -->
+                      <div v-if="film.overview">Overview - {{film.overview}}</div>
+                    </ul>
+                  </div>
                 </div>
+              <!-- /Lista All -->
 
-                <div class="layer-informazioni">
-
-                  <ul>
-                    <!-- Titolo, titolo originale -->
-                    <!-- Debug -->
-                    <div style="font-size: 24px;color:white"> <span v-if="film.name">SERIE TV </span><span v-if="film.title">FILM </div>
-                    <li v-if="film.title" class="titolo">Titolo - {{film.title}}</li>
-                    <li v-if="film.name" class="titolo">Titolo - {{film.name}}</li>
-                    <li v-if="film.original_title" class="titolo-originale">Titolo originale - {{film.original_title}}</li>
-                    <li v-if="film.original_name" class="titolo-originale">Titolo originale - {{film.original_name}}</li>
-
-                    <!-- Lingua  -->
-                    <img v-if="showLanguageFlag(film.original_language)" :src="showLanguageFlag(film.original_language)">
-                    <div v-else="showLanguageFlag(film.original_language)">Lingua - {{film.original_language}}</div>
-
-                    <!-- Rating - Mostra bandiera, se non presente mostra caratteri -->
-                    <li class="stelline">
-                      <i v-for="stellina in showStarRating(film.vote_average)" class="fas fa-star voto"></i>
-                      <i v-for="stellina in showStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
-                    </li>
-                    <!-- Overview -->
-                    <div v-if="film.overview">Overview - {{film.overview}}</div>
-                  </ul>
-                </div>
               </div>
-            <!-- /Lista All -->
-
+              <!-- /Box film -->
             </div>
-            <!-- Lista Film trovati -->
+            <!-- /Box hide scrollbar -->
 
           </div>
           <!-- /Main center -->

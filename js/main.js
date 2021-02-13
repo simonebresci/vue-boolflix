@@ -22,7 +22,7 @@ var app = new Vue ({
 
   },
   mounted() {
-    // EMPTY
+    this.searchQuery();
   },
   methods: {
     // METODI GENERICI *********************************************************
