@@ -19,16 +19,16 @@
       <div class="container">
         <!-- Contenuto del sito -->
         <div class="content">
-
-          <!-- /Search Bar -->
-
-          <!-- Main top -->
+          <!-- MAIN TOP *****************************************************-->
           <div class="main-top">
 
+            <!-- MAIN MENU********************** -->
             <div class="main-menu">
+              <!-- LOGO -->
               <div class="logo">
-                <img src="https://fontmeme.com/permalink/210210/4937b74c6317b36c509baa13669b4b20.png" alt="">
+                <img src="./img/logo/logo.png" alt="Logo boolflix">
               </div>
+              <!-- MAIN MENU LINKS -->
               <ul class="menu-inline-1">
                 <li>Home</li>
                 <li>Serie Tv</li>
@@ -37,124 +37,128 @@
                 <li>La mia lista</li>
               </ul>
             </div>
+            <!-- /MAIN MENU ********************** -->
 
+            <!-- ACTION MENU ********************* -->
             <div class="action-menu">
+
+              <!-- MENU DX -->
               <ul class="menu-inline-1">
+                <!-- Search bar -->
                 <li>
                   <input
                   class="search-bar"
                   v-model="searchInput"
                   @keyup.enter="searchQuery">
                 </li>
+                <!-- Actions -->
                 <li><i class="fas fa-search fa-lg" @click="searchQuery"></i></li>
                 <li>BAMBINI</li>
                 <li><i class="fas fa-gift fa-lg"></i></li>
                 <li><i class="fas fa-bell fa-lg"></i></li>
                 <li><i class="fas fa-user-circle fa-lg"></i></li>
               </ul>
+              <!-- /MENU DX -->
             </div>
+            <!-- /ACTION MENU ********************* -->
 
           </div>
-          <!-- /Main top -->
+          <!-- /MAIN TOP ****************************************************-->
 
-          <!-- Main center -->
+          <!-- MAIN CENTER **************************************************-->
           <div class="main-center">
-            <!-- Lista All -->
-            <h3>Scroll films with shift+mouse wheel</h3>
+            <!-- LISTE FILM ********************** -->
             <div v-for="(sezione, index) in getSezioniFromList()" class="box-section">
+              <!-- SEZIONE -->
               <div class="title-section">{{nomiSezioni[index]}}</div>
+              <!-- BOX FILM -->
               <div class="box-film">
 
                 <!-- Film -->
-                <!-- <span> {{[sezione].length}}</span> -->
-                <!-- <span> {{sezione.length}}</span> -->
                 <div v-for="film in sezione" class="film">
 
-                  <!-- Poster - immagine -->
+                  <!-- layer copertina -->
                   <div class="layer-copertina">
                     <img v-if="film.poster_path" class="poster" :src="getPosterSrc(film)" alt="Immagine non disponibile">
-                    <img v-else class="poster" alt="immagine non disponibile" src="https://www.altavod.com/assets/images/poster-placeholder.png">
+                    <img v-else class="poster" alt="immagine non disponibile" src="./img/icone/no-copertina.png">
                   </div>
+                  <!-- /layer copertina -->
 
+                  <!-- Layer informazioni -->
                   <div class="layer-informazioni">
 
+                    <!-- Lista info film -->
                     <ul>
                       <!-- Titolo, titolo originale -->
-                      <!-- Debug -->
-                      <!-- <li> <div style="font-size: 24px;color:white"> <span v-if="film.name">SERIE TV </span><span v-if="film.title">FILM </div></li> -->
                       <li v-if="film.title" class="titolo">Titolo - {{film.title}}</li>
                       <li v-if="film.name" class="titolo">Titolo - {{film.name}}</li>
                       <li v-if="film.original_title" class="titolo-originale">Titolo originale - {{film.original_title}}</li>
                       <li v-if="film.original_name" class="titolo-originale">Titolo originale - {{film.original_name}}</li>
-
                       <!-- Lingua  -->
                       <li> <img v-if="showLanguageFlag(film.original_language)" :src="showLanguageFlag(film.original_language)">
                       <div v-else="showLanguageFlag(film.original_language)">Lingua - {{film.original_language}}</div></li>
-
                       <!-- Rating - Mostra bandiera, se non presente mostra caratteri -->
                       <li class="stelline">
                         <i v-for="stellina in showStarRating(film.vote_average)" class="fas fa-star voto"></i>
                         <i v-for="stellina in showStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
                       </li>
-
-
                       <!-- Overview -->
                       <li class="overview" v-if="film.overview"> Overview - {{film.overview}}</li>
-
-                      <!-- Predisposizione bonus -->
-                      <!-- <br>
-                      <div class="attori">
-                        <span>ATTORI PARTECIPANTI</span>
-                        <ul>
-                          <li> ATTORE 1</li>
-                          <li> ATTORE 2</li>
-                          <li> ATTORE 3</li>
-                          <li> ATTORE 4</li>
-                          <li> ATTORE 5</li>
-                        </ul>
-                      </div>
-
-                      <div class="generi">
-                        <span>ATTORI PARTECIPANTI</span>
-                        <ul>
-                          <li> GENERE 1</li>
-                          <li> GENERE 2</li>
-                          <li> GENERE 3</li>
-                          <li> GENERE 4</li>
-                          <li> GENERE 5</li>
-                        </ul>
-                      </div> -->
-                      <!-- /Predisposizione bonus  -->
-
                     </ul>
+                    <!-- /Lista info film -->
                   </div>
+                  <!-- /Layer informazioni -->
                 </div>
-              <!-- /Lista All -->
+                <!-- /Lista All -->
 
               </div>
-              <!-- /Box film -->
+              <!-- /BOX FILM -->
             </div>
-            <!-- /Box hide scroll -->
-
-
-
-            <div> BONUS da implementare - Selezione film per categoria
-              <select>
-                <option>Azione</option>
-                <option>Thriller</option>
-                <option>Commedia</option>
-              </select>
-
-            </div>
+            <!-- /LISTE FILM ********************** -->
           </div>
-          <!-- /Main center -->
-
-
+          <!-- /MAIN CENTER *************************************************-->
 
       </div>
       <!-- /Container -->
     </div>
     <!-- /Root -->
+    <!-- Script Javascript -->
     <script src="./js/main.js" charset="utf-8"></script>
   </body>
 </html>
+
+
+<!-- Predisposizione bonus -->
+<!-- <br>
+<div class="attori">
+  <span>ATTORI PARTECIPANTI</span>
+  <ul>
+    <li> ATTORE 1</li>
+    <li> ATTORE 2</li>
+    <li> ATTORE 3</li>
+    <li> ATTORE 4</li>
+    <li> ATTORE 5</li>
+  </ul>
+</div>
+
+<div class="generi">
+  <span>ATTORI PARTECIPANTI</span>
+  <ul>
+    <li> GENERE 1</li>
+    <li> GENERE 2</li>
+    <li> GENERE 3</li>
+    <li> GENERE 4</li>
+    <li> GENERE 5</li>
+  </ul>
+</div> -->
+<!-- /Predisposizione bonus  -->
+
+
+<!-- <div> BONUS da implementare - Selezione film per categoria
+  <select>
+    <option>Azione</option>
+    <option>Thriller</option>
+    <option>Commedia</option>
+  </select>
+
+</div> -->
