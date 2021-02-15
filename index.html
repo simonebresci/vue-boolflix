@@ -20,6 +20,7 @@
         <!-- Contenuto del sito -->
         <div class="content">
           <!-- MAIN TOP *****************************************************-->
+
           <div class="main-top">
 
             <!-- MAIN MENU********************** -->
@@ -49,6 +50,7 @@
                   <input
                   class="search-bar"
                   v-model="searchInput"
+                  placeholder="Cerca Film"
                   @keyup.enter="searchQuery">
                 </li>
                 <!-- Actions -->
@@ -63,12 +65,13 @@
             <!-- /ACTION MENU ********************* -->
 
           </div>
+
           <!-- /MAIN TOP ****************************************************-->
 
           <!-- MAIN CENTER **************************************************-->
           <div class="main-center">
             <!-- LISTE FILM ********************** -->
-            <div v-for="(sezione, index) in getSezioniFromList()" class="box-section">
+            <div v-if="sezione.length > 0" v-for="(sezione, index) in getSezioniFromList()" class="box-section">
               <!-- SEZIONE -->
               <div class="title-section">{{nomiSezioni[index]}}</div>
               <!-- BOX FILM -->
@@ -103,7 +106,7 @@
                         <i v-for="stellina in getStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
                       </li>
                       <!-- Overview -->
-                      <li class="overview" v-if="film.overview"> Overview - {{film.overview}}</li>
+                      <li class="overview" v-if="film.overview"> {{film.overview}}</li>
                     </ul>
                     <!-- /Lista info film -->
                   </div>

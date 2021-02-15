@@ -49,16 +49,25 @@ body{
 /* /CONTAINER & CONTENT *******************************************************/
 
 /* MAIN TOP *******************************************************************/
+
 .main-top{
+  position: fixed;
   display: flex;
-  width:100%;
+  top:0;
+  left: 0px;
+  width: 100%;
+  min-width: 1200px;
   height: 50px;
   justify-content: space-between;
   align-items: center;
+  background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%);
+  z-index: 100;
+  padding: 20px 60px;
 }
 
 .main-menu .logo{
   display: inline-block;
+  cursor: pointer;
 }
 .main-menu .logo img{
   height: 30px;
@@ -87,6 +96,10 @@ body{
 /* /MAIN TOP *******************************************************************/
 
 /* MAIN CENTER ****************************************************************/
+
+.main-center{
+  margin-top: 30px;
+}
 
 .title-section{
   display: flex;
@@ -226,6 +239,9 @@ body{
 .film ul li.overview{
   margin-top: 15px;
   font-size: 18px;
+  max-height: 200px;
+  overflow-y: auto;
+
 }
 
 /* /FILM ************************************/

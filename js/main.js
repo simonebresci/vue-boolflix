@@ -1,21 +1,18 @@
-// https://docs.google.com/document/d/1u4ev8ecrrACEIctVoCc2HIDS69w8G2QLBdq3EDfbzXo/edit
-
-// TODO: Gestire overflow campo overview
-// TODO: Font custom
+// todo: costruire oggetto sezione anzichè var e nomiSezioni
 
 var app = new Vue ({
   el: '#root',
   data: {
     // I/O INTERFACCIA GRAFICA
-    searchInput: 'Kill Bill',
+    searchInput: 'Zombie',
     selected: '',
-    varSezioni: ['listaAll', 'listaFilm', 'listaSerieTV', 'listaCommedie' ],
-    nomiSezioni: ['FILM & SERIE TV', 'FILM', 'SERIE TV', 'COMMEDIE (COPIA DI FILM)'], /* Nomi assocciati a varSezioni */
+    varSezioni: ['listaAll', 'listaFilm', 'listaSerieTV' /*, 'listaCommedie'*/ ],
+    nomiSezioni: ['FILM & SERIE TV', 'FILM', 'SERIE TV', /*'COMMEDIE' */], /* Nomi assocciati a varSezioni */
 
     // RISULTATO QUERY
     listaFilm: [],            // Lista Film
     listaSerieTV: [],         // Lista Serie Tv
-    listaCommedie: [],        // Lista commedie
+    // listaCommedie: [],        // Lista commedie
     listaAll: [],             // Lista contenente tutte le fonti
 
   },
@@ -83,12 +80,12 @@ var app = new Vue ({
       this.listaFilm = [];
       this.listaSerieTV = [];
       this.listaAll = [];
-      this.listaCommedie = [];
+      // this.listaCommedie = [];
 
       // Cerca film e serie TV
       this.searchFilms('https://api.themoviedb.org/3/search/movie');
       this.searchSerieTV('https://api.themoviedb.org/3/search/tv');
-      this.searchCommedie('https://api.themoviedb.org/3/search/movie'); /* Copia di movie */
+      // this.searchCommedie('https://api.themoviedb.org/3/search/movie'); /* Copia di movie */
     },
     // RICERCA FILM
     searchFilms: function(url){
