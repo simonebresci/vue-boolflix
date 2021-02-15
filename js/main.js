@@ -17,11 +17,13 @@ var app = new Vue ({
     // I/O INTERFACCIA GRAFICA
     searchInput: 'Kill Bill',
     selected: '',
-    showSezioni: ['listaAll', 'listaFilm', 'listaSerieTV'],
+    varSezioni: ['listaAll', 'listaFilm', 'listaSerieTV', 'listaCommedie','listaCommedie','listaCommedie' ],
+    nomiSezioni: ['FILM & SERIE TV', 'FILM', 'SERIE TV', 'Commedie (test sezioni)','Commedie (test sezioni)','Commedie (test sezioni)'], /* Nomi assocciati a varSezioni */
 
     // RISULTATO QUERY
     listaFilm: [],            // Lista Film
     listaSerieTV: [],         // Lista Serie Tv
+    listaCommedie: [],         // Lista commedie
     listaAll: [],             // Lista contenente tutte le fonti
 
 
@@ -61,10 +63,27 @@ var app = new Vue ({
     bandieraNonDisponibile: function(event){
       event.target.src = "";
     },
-    getSezioni: function(section){
-      
+    getSezioni: function(){
+
       const arraySezioni = [this.listaAll, this.listaFilm, this.listaSerieTV];
 
+      console.log(arraySezioni);
+
+      return arraySezioni;
+    },
+    getSezioniFromList: function(){
+
+
+      const arraySezioni = [ ];
+      let nomeVarTmp = '';
+
+      (this.varSezioni).forEach( (element, index)=>{
+        nomeVarTmp = 'this.'+element;
+        console.log(nomeVarTmp);
+        console.log(eval(nomeVarTmp));
+        // console.log(typeof([element]));
+        arraySezioni.push(eval(nomeVarTmp));
+      });
       console.log(arraySezioni);
 
       return arraySezioni;
@@ -108,7 +127,7 @@ var app = new Vue ({
       // Cerca film e serie TV
       this.searchFilms('https://api.themoviedb.org/3/search/movie');
       this.searchSerieTV('https://api.themoviedb.org/3/search/tv');
-
+      this.searchCommedie('https://api.themoviedb.org/3/search/movie'); /* Copia di movie per testare sezioni */
       },
       searchFilms: function(url){
         const self = this;
@@ -124,8 +143,8 @@ var app = new Vue ({
                console.log("RISULTATI TROVATI: " + result.length);
                result.forEach((item, i) => {
                  // OUTPUT SU CONSOLE.LOG
-                 console.log('# FILM N.' + i);
-                 self.consoleLogResultFilm(item);
+                 // console.log('# FILM N.' + i);
+                 // self.consoleLogResultFilm(item);
                });
                console.log('');
                // /Debug*******************************
@@ -145,8 +164,29 @@ var app = new Vue ({
                console.log("RISULTATI TROVATI: " + result.length);
                result.forEach((item, i) => {
                  // OUTPUT SU CONSOLE.LOG
-                 console.log('# SERIE TV N.' + i);
-                 self.consoleLogResultSerieTv(item);
+                 // console.log('# SERIE TV N.' + i);
+                 // self.consoleLogResultSerieTv(item);
+               });
+               console.log('');
+               // /Debug*******************************
+             });
+      },
+      searchCommedie: function(url){
+        const self = this;
+        this.standardAPICall(url)
+        .then(function(objReceived){
+               // Sovrascrivi lista con risposta alla query
+               self.listaCommedie = objReceived.data.results;
+               // Aggiungi film a listaAll
+               self.listaAll = [...self.listaAll, ...self.listaCommedie];
+
+               // Debug*******************************
+               const result = objReceived.data.results;
+               console.log("RISULTATI TROVATI: " + result.length);
+               result.forEach((item, i) => {
+                 // OUTPUT SU CONSOLE.LOG
+                 // console.log('# SERIE TV N.' + i);
+                 // self.consoleLogResultSerieTv(item);
                });
                console.log('');
                // /Debug*******************************

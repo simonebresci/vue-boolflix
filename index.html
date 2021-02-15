@@ -61,8 +61,8 @@
           <div class="main-center">
             <!-- Lista All -->
             <h3>Scroll films with shift+mouse wheel</h3>
-            <div v-for="(sezione, index) in getSezioni()" class="box-hide-scrollbar">
-             <h2>LISTA {{index}} </h2>
+            <div v-for="(sezione, index) in getSezioniFromList()" class="box-hide-scrollbar">
+             <h2>{{nomiSezioni[index]}} </h2>
               <div class="box-film">
 
                 <!-- Film -->
