@@ -61,13 +61,14 @@
           <div class="main-center">
             <!-- Lista All -->
             <h3>Scroll films with shift+mouse wheel</h3>
-            <div v-for="sezione in showSezioni" class="box-hide-scrollbar">
-             <h2>LISTA {{sezione}}</h2>
+            <div v-for="(sezione, index) in getSezioni()" class="box-hide-scrollbar">
+             <h2>LISTA {{index}} </h2>
               <div class="box-film">
+
                 <!-- Film -->
                 <!-- <span> {{[sezione].length}}</span> -->
                 <!-- <span> {{sezione.length}}</span> -->
-                <div v-for="film in listaAll" class="film">
+                <div v-for="film in sezione" class="film">
 
                   <!-- Poster - immagine -->
                   <div class="layer-copertina">

@@ -61,11 +61,13 @@ var app = new Vue ({
     bandieraNonDisponibile: function(event){
       event.target.src = "";
     },
-    getSezione: function(section){
-      // console.log(this.[section]);
-      console.log(section);
+    getSezioni: function(section){
+      
+      const arraySezioni = [this.listaAll, this.listaFilm, this.listaSerieTV];
 
-      return section;
+      console.log(arraySezioni);
+
+      return arraySezioni;
     },
     // copertinaNonDisponibile: function(event) {
     //   event.target.src = "https://images-na.ssl-images-amazon.com/images/I/317s8kIy1WL._AC_.jpg";
