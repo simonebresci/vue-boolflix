@@ -93,6 +93,7 @@ body{
 
 .title-section{
   display: flex;
+  justify-content: center;
   align-items: center;
   color: white;
   font-size: 36px;
@@ -101,19 +102,31 @@ body{
 
 }
 
-.box-hide-scrollbar{
+.box-section{
+  margin-bottom: 30px;
+}
+
+.box-film{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* SEZIONE CON SCROLLBAR */
+.section-hide-scrollbar{
   height: 560px;
   overflow-y: hidden;
   /* margin-bottom: 30px; */
 }
 
-.box-film{
+.section-hide-scrollbar .box-film{
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
   height: 550px;
 }
+/* /SEZIONE CON SCROLLBAR */
 
 .film{
   position: relative;
