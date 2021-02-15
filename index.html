@@ -95,12 +95,12 @@
                       <li v-if="film.original_title" class="titolo-originale">Titolo originale - {{film.original_title}}</li>
                       <li v-if="film.original_name" class="titolo-originale">Titolo originale - {{film.original_name}}</li>
                       <!-- Lingua  -->
-                      <li> <img v-if="showLanguageFlag(film.original_language)" :src="showLanguageFlag(film.original_language)">
-                      <div v-else="showLanguageFlag(film.original_language)">Lingua - {{film.original_language}}</div></li>
+                      <li> <img v-if="getLanguageFlag(film.original_language)" :src="getLanguageFlag(film.original_language)">
+                      <div v-else="getLanguageFlag(film.original_language)">Lingua - {{film.original_language}}</div></li>
                       <!-- Rating - Mostra bandiera, se non presente mostra caratteri -->
                       <li class="stelline">
-                        <i v-for="stellina in showStarRating(film.vote_average)" class="fas fa-star voto"></i>
-                        <i v-for="stellina in showStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
+                        <i v-for="stellina in getStarRating(film.vote_average)" class="fas fa-star voto"></i>
+                        <i v-for="stellina in getStarRatingEmpty(film.vote_average)" class="far fa-star votoEmpty"></i>
                       </li>
                       <!-- Overview -->
                       <li class="overview" v-if="film.overview"> Overview - {{film.overview}}</li>
